@@ -16,6 +16,12 @@ sudo apt update -y
 
 sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-sudo service start docker
+# Reinicie o wsl
 
-sudo docker run hello-world
+# Para testar a instalação utilize os comandos abaixo
+# sudo service start docker
+# sudo docker run hello-world
+
+# Caso queira instale o portainer https://docs.portainer.io/start/install-ce/server/docker/wsl
+# docker volume create portainer_data
+# docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
