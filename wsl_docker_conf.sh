@@ -1,4 +1,15 @@
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt remove $pkg; done
+
+sudo rm /etc/resolv.conf
+sudo bash -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf'
+sudo bash -c 'echo "[network]" > /etc/wsl.conf'
+sudo bash -c 'echo "generateResolvConf = false" >> /etc/wsl.conf'
+sudo chattr +i /etc/resolv.conf
+
 sudo apt update -y && sudo apt upgrade -y
+
+sudo update-alternatives --set iptables /usr/sbin/iptables-legacy 
+sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 
 sudo apt-get install \
     ca-certificates \
@@ -16,10 +27,11 @@ sudo apt update -y
 
 sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
+sudo service docker start
+
 # Reinicie o wsl
 
 # Para testar a instalação utilize os comandos abaixo
-# sudo service start docker
 # sudo docker run hello-world
 
 # Caso queira instale o portainer https://docs.portainer.io/start/install-ce/server/docker/wsl
