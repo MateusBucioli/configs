@@ -1,4 +1,17 @@
 if(test-path -PathType container $PROFILE) {
       New-Item -ItemType Directory -Path $PROFILE
 }
-Add-Content -Path $PROFILE -Value "Invoke-Expression (&starship init powershell)"
+
+$profileContent = @"
+
+Invoke-Expression (&starship init powershell)
+
+# Shows navigable menu of all options when hitting Tab
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+
+# Autocompletion for arrow keys
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+"@
+
+Add-Content -Path $PROFILE -Value $profileContent
