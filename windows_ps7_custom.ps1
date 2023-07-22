@@ -16,7 +16,11 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 # Cria um alias para utilizar o comando docker em uma distribuicao WSL2
 # Altere o valor do parametro -d (ex: Ubuntu-22.04) para o nome da distribuicao desejada (utilize wsl -l para visualizar o nome de suas distros)
 #function wsl-docker {
-#	wsl -d Ubuntu-22.04 --exec docker
+#	param(
+#		[Parameter(ValueFromRemainingArguments=$true)]
+#		$params
+#	)
+#	wsl -d Ubuntu-22.04 --exec docker $params
 #}
 #New-Alias docker wsl-docker
 "@
