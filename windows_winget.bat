@@ -8,3 +8,4 @@ winget install Microsoft.VisualStudioCode
 winget install BurntSushi.ripgrep.MSVC
 winget install k6.k6
 winget install Python.Python.3.11
+winget install Microsoft.PowerToys
