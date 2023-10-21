@@ -12,7 +12,7 @@ printf 'zsh\n' >> ~/.bashrc
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/FiraCode.zip -O /tmp/firacode
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.0/FiraCode.zip -O /tmp/firacode/FiraCode.zip
 
 sudo unzip /tmp/firacode/FiraCode.zip -d /usr/share/fonts/
 
