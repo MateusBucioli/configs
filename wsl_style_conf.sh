@@ -12,9 +12,9 @@ printf 'zsh\n' >> ~/.bashrc
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip -x -O /tmp/firacode/FiraCode.zip
+wget -x https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip -O /tmp/FiraCode.zip
 
-sudo unzip /tmp/firacode/FiraCode.zip -d /usr/share/fonts/
+sudo unzip /tmp/FiraCode.zip -d /usr/share/fonts/ && sudo rm /tmp/FiraCode.zip
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
