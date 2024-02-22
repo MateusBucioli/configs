@@ -1,3 +1,4 @@
+# This file needs to be under your user $HOME ex.: C:\Users\mateus\.wslconfig
 [wsl2]
 
 # Use if you want to limit RAM usage (Recommended)
