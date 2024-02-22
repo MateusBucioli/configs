@@ -12,6 +12,8 @@ localhostforwarding=true
 
 [experimental]
 # Auto reduce VHD size, work sometimes
+# You can use 'wsl df -h /' to see the disk usage of WSL.
+# Inside the distro, use 'sudo fstrim -av' to resize the filesystem removing unused blocks.
 sparseVhd=true
 
 # Just use if you are having networking problems & have admin access to firewall
