@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-- Go to you $HOME, change .wslconfig
+- Go to you `$HOME`, change `.wslconfig`.
   ```.wslconfig
   [wsl2]
   memory=8GB
