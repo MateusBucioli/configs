@@ -1,9 +1,3 @@
-if(test-path -PathType container $PROFILE) {
-      New-Item -ItemType Directory -Path $PROFILE
-}
-
-$profileContent = @"
-
 Invoke-Expression (&starship init powershell)
 
 # Shows navigable menu of all options when hitting Tab
@@ -13,16 +7,33 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
-# Cria um alias para utilizar o comando docker em uma distribuicao WSL2
-# Altere o valor do parametro -d (ex: Ubuntu-22.04) para o nome da distribuicao desejada (utilize wsl -l para visualizar o nome de suas distros)
-#function wsl-docker {
-#	param(
-#		[Parameter(ValueFromRemainingArguments=$true)]
-#		$params
-#	)
-#	wsl -d Ubuntu-22.04 --exec docker $params
-#}
-#New-Alias docker wsl-docker
-"@
+function Get-DefaultWslDistro {
+    $distros = wsl -l -v | Select-String -Pattern '\*'
+    if ($distros -ne $null) {
+        return ($distros.Line -split ' ')[1].Trim()
+    }
+    return $null
+}
 
-Add-Content -Path $PROFILE -Value $profileContent
+function wsl-docker {
+	param(
+		[Parameter(ValueFromRemainingArguments=$true)]
+		$params
+	)
+
+      # TODO: Find why $distro cant be used in "wsl -d $distro" statements
+	# $distro = Get-DefaultWslDistro
+	# if ($distro -eq $null) {
+	# 	echo "No default WSL distro found"
+	# 	return
+	# }
+
+	if ((wsl -d Ubuntu -- sudo service docker status) -like "*is not running*") {
+		wsl -d Ubuntu -- sudo service docker start
+	}
+	wsl -d Ubuntu -- docker $params
+}
+
+if (-not (Get-Command -Name docker -ErrorAction SilentlyContinue)) {
+	New-Alias -Name docker -Value wsl-docker
+}
