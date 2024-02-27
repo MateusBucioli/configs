@@ -88,7 +88,10 @@
 
 - This will flush your network, it will require a restart.
   ```powershell
-  netsh winsock reset && netsh int ip reset && ipconfig /release && ipconfig /renew && ipconfig /flushdns
+  netsh winsock reset 
+  netsh int ip reset all
+  netsh winhttp reset proxy
+  ipconfig /flushdns
   ```
 
 ## If nothing works, try to reset windows networks
