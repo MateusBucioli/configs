@@ -15,7 +15,7 @@ fi
 if [ $choice -eq 1 ]; then
   if [ ! -f /usr/bin/fish ]; then
     sudo apt install fish -y
-    chsh -s /bin/fish
+    chsh -s /usr/bin/fish || chsh -s /bin/fish
   elif
     echo "fish is already installed."
     exit 1
@@ -25,7 +25,7 @@ fi
 if [ $choice -eq 2 ]; then
   if [ ! -f /usr/bin/zsh ]; then
     sudo apt install zsh -y
-    chsh -s /bin/zsh
+    chsh -s /usr/bin/zsh || chsh -s /bin/zsh
   elif
     echo "zsh is already installed."
     exit 1
